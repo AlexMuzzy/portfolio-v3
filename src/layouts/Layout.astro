@@ -59,14 +59,6 @@ const linkedin = "https://www.linkedin.com/in/alex-musgrove-242a0b16a/";
                     <a href={home ? "#projects" : "/#projects"}>Projects</a>
                     <a href="#contact">Contact</a>
                   </nav>
-                  <label data-theme-control hidden>
-                    <span class="sr-only">Colour theme</span>
-                    <select data-theme-select class="min-h-11 cursor-pointer rounded-control border border-current/30 bg-transparent px-2 py-1 text-sm text-inherit focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus">
-                      <option class="bg-background text-foreground" value="system">System</option>
-                      <option class="bg-background text-foreground" value="light">Light</option>
-                      <option class="bg-background text-foreground" value="dark">Dark</option>
-                    </select>
-                  </label>
                 </div>
             </div>
         </header>
@@ -91,8 +83,16 @@ const linkedin = "https://www.linkedin.com/in/alex-musgrove-242a0b16a/";
                     </a>
                 </div>
             </div>
-            <div class="shell footer-bottom">
+            <div class="shell footer-bottom flex-wrap">
                 <span>© {new Date().getFullYear()} Alex Musgrove</span>
+                <label data-theme-control hidden>
+                    <span class="mr-2">Page theme</span>
+                    <select data-theme-select class="min-h-11 cursor-pointer rounded-control border border-current/30 bg-transparent px-2 py-1 text-sm text-inherit focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus">
+                        <option class="bg-background text-foreground" value="system">System</option>
+                        <option class="bg-background text-foreground" value="light">Light</option>
+                        <option class="bg-background text-foreground" value="dark">Dark</option>
+                    </select>
+                </label>
                 <a href="#top">
                     Back to top <span aria-hidden="true">↑</span>
                 </a>

@@ -28,8 +28,8 @@ Tailwind CSS 4 uses the official `@tailwindcss/vite` plugin in `astro.config.mjs
 
 - `src/styles/theme.css` defines the semantic palette, font, type scale, spacing and radii. Edit the light `:root` and dark `[data-theme='dark']` values here.
 - `src/styles/global.css` imports Tailwind and the tokens, then preserves the portfolio's component styles. Utilities are the final cascade layer, so they can override component styles without increasing specificity.
-- `src/scripts/theme.js` is inlined in the shared layout's head to choose the theme before paint. The header selector offers System, Light and Dark; System is the default. Explicit preferences use the `portfolio-theme` localStorage key, synchronize across tabs, and work in memory if storage is blocked. Without JavaScript, the page remains readable in its default light theme and the selector stays hidden.
-- The particle hero deliberately keeps its navy surface in both themes. All readable sections, project pages, the footer and the 404 page use the shared light/dark palette.
+- `src/scripts/theme.js` is inlined in the shared layout's head to choose the theme before paint. The footer’s Page theme selector offers System, Light and Dark; System is the default. Explicit preferences use the `portfolio-theme` localStorage key, synchronize across tabs, and work in memory if storage is blocked. Without JavaScript, the page remains readable in its default light theme and the selector stays hidden.
+- The particle hero deliberately keeps its navy surface in both themes. The theme control lives in the footer, where its effect is visible, rather than over the fixed hero. All readable sections, project pages, the footer and the 404 page use the shared light/dark palette.
 
 Use semantic utilities when adding components; their colours adapt automatically:
 
