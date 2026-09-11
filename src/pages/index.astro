@@ -1,0 +1,231 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import portrait from "../assets/portrait.jpeg";
+import exertHome from "../assets/exert/01-home.png";
+
+// Career summaries based on Alex's July 2026 CV.
+const experience = [
+    {
+        role: "Senior Software Engineer",
+        company: "Intuit QuickBooks",
+        dates: "Jul 2022 – Present",
+        progression: "Software Engineer → Engineer II → Senior (Jan 2026)",
+        description:
+            "Technical lead for the UK’s Making Tax Digital platform, supporting 60,000+ business signups. Rebuilt a tax calculation engine, cutting p99 API latency from around 8 seconds to under 100 milliseconds.",
+    },
+    {
+        role: "Software Engineer",
+        company: "CGI IT UK",
+        dates: "Aug 2021 – Jul 2022",
+        description:
+            "Built analytics features with React, TypeScript and Java, alongside C++ and Python software for a mission-critical aviation system.",
+    },
+    {
+        role: "Research Assistant",
+        company: "Loughborough University",
+        dates: "Jan 2021 – May 2022",
+        description:
+            "Developed a Python data-visualisation algorithm for physics research, later integrated into a desktop application.",
+    },
+    {
+        role: "Software Engineer Placement",
+        company: "CGI IT UK",
+        dates: "Jul 2019 – Aug 2020",
+        description:
+            "Built a Linux test-automation platform using Python and Robot Framework, replacing manual release checks with scheduled regression testing.",
+    },
+];
+---
+
+<Layout home>
+    <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-art" data-scene-state="poster" aria-hidden="true">
+            <div class="hero-art-inner"></div>
+        </div>
+        <div class="shell hero-content">
+            <div class="hero-copy">
+                <p class="hero-role">Senior software engineer</p>
+                <h1 id="hero-title">
+                    Alex
+                    <br />
+                    Musgrove<span aria-hidden="true">.</span>
+                </h1>
+                <p class="hero-intro">
+                    Thoughtful software.
+                    <br /> Built with care.
+                </p>
+                <p class="hero-description">
+                    I’m a London-based engineer building distributed systems,
+                    with a focus on reliability and performance.
+                </p>
+                <nav aria-label="Social profiles" class="mt-6 flex flex-wrap gap-3">
+                    <a
+                        class="inline-flex min-h-11 items-center gap-4 rounded-control border border-hero-muted bg-hero px-4 py-2 text-base text-on-hero hover:bg-on-hero hover:text-hero"
+                        href="https://www.linkedin.com/in/alex-musgrove-242a0b16a/"
+                    >
+                        LinkedIn <span aria-hidden="true">↗</span>
+                    </a>
+                    <a
+                        class="inline-flex min-h-11 items-center gap-4 rounded-control border border-hero-muted bg-hero px-4 py-2 text-base text-on-hero hover:bg-on-hero hover:text-hero"
+                        href="https://github.com/AlexMuzzy"
+                    >
+                        GitHub <span aria-hidden="true">↗</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+        <div class="shell hero-bottom">
+            <div class="scene-controls">
+                <span data-scene-status aria-live="polite"></span>
+                <button
+                    type="button"
+                    data-pause-motion
+                    aria-pressed="false"
+                    hidden
+                >
+                    Pause motion
+                </button>
+            </div>
+            <a href="#experience">
+                Scroll to explore <span aria-hidden="true">↓</span>
+            </a>
+        </div>
+    </section>
+
+    <div class="shell content-shell">
+        <section
+            class="content-section"
+            id="experience"
+            aria-labelledby="experience-title"
+        >
+            <div class="section-heading">
+                <h2 id="experience-title">Experience</h2>
+                <p>The work so far.</p>
+            </div>
+            <div class="section-body">
+                <ol class="experience-list">
+                    {experience.map((job) => (
+                        <li class="experience-entry">
+                            <div class="experience-top">
+                                <h3>{job.role}</h3>
+                                <span class="dates">{job.dates}</span>
+                            </div>
+                            <p class="company">{job.company}</p>
+                            {job.progression && <p class="mt-2 text-sm text-muted">{job.progression}</p>}
+                            <p class="experience-description">
+                                {job.description}
+                            </p>
+                        </li>
+                    ))}
+                </ol>
+            </div>
+        </section>
+
+        <section
+            class="content-section"
+            id="projects"
+            aria-labelledby="projects-title"
+        >
+            <div class="section-heading">
+                <h2 id="projects-title">Side projects</h2>
+                <p>Outside the day job.</p>
+            </div>
+            <div class="section-body">
+                <a
+                    href="/projects/exert/"
+                    class="project-row grid grid-cols-1 gap-8 sm:grid-cols-[minmax(0,1fr)_180px]"
+                >
+                    <div>
+                        <h3>Exert</h3>
+                        <p>
+                            A training app for building programs, logging workouts
+                            and tracking progress. Currently in private beta.
+                        </p>
+                        <span class="project-link">
+                            More about the project <span aria-hidden="true">↗</span>
+                        </span>
+                    </div>
+                    <Image
+                        src={exertHome}
+                        alt="Exert home screen showing the next workout and weekly training progress"
+                        width={220}
+                        widths={[220, 440, 660]}
+                        sizes="(min-width: 640px) 180px, 192px"
+                        format="webp"
+                        loading="lazy"
+                        class="h-auto w-full max-w-48 justify-self-center rounded-3xl border border-border"
+                    />
+                </a>
+            </div>
+        </section>
+
+        <section
+            class="content-section about-section"
+            id="about"
+            aria-labelledby="about-title"
+        >
+            <div class="section-heading">
+                <h2 id="about-title">A little about me</h2>
+            </div>
+            <div class="section-body about-body">
+                <div class="about-copy">
+                    <p>
+                        I’m Alex, a senior software engineer in London with
+                        over six years of experience building backend systems.
+                        I work across architecture, performance and cloud infrastructure.
+                    </p>
+                    <p>
+                        I also build AI tools for engineering teams, including
+                        MCP servers and agent workflows. I graduated from
+                        Loughborough University with first-class honours in
+                        Computer Science.
+                    </p>
+                    <a
+                        class="text-link"
+                        href="https://www.linkedin.com/in/alex-musgrove-242a0b16a/"
+                    >
+                        Find me on LinkedIn <span aria-hidden="true">↗</span>
+                    </a>
+                </div>
+                <Image
+                    class="portrait"
+                    src={portrait}
+                    alt="Alex Musgrove in Times Square"
+                    width={184}
+                    height={224}
+                    format="webp"
+                    loading="lazy"
+                />
+            </div>
+        </section>
+    </div>
+</Layout>
+
+<script>
+    const host = document.querySelector<HTMLElement>(".hero-art");
+    if (host) {
+        const observer = new IntersectionObserver(async ([entry]) => {
+            if (!entry.isIntersecting) return;
+            observer.disconnect();
+            host.dataset.sceneState = "loading";
+            const status = document.querySelector<HTMLElement>(
+                "[data-scene-status]",
+            )!;
+            status.textContent = "";
+            try {
+                const { mountHeroScene } =
+                    await import("../scripts/hero-scene");
+                mountHeroScene(host);
+            } catch (error) {
+                host.dataset.sceneState = "unavailable";
+                status.textContent = "";
+                console.warn(
+                    "Could not initialize the portfolio scene.",
+                    error,
+                );
+            }
+        });
+        observer.observe(host);
+    }
+</script>

@@ -1,0 +1,71 @@
+/* Semantic palette: use these roles in both CSS and Tailwind utilities. */
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-focus: var(--focus);
+  --color-notice: var(--notice);
+  --color-notice-foreground: var(--notice-foreground);
+  --color-notice-border: var(--notice-border);
+  --color-hero: var(--hero);
+  --color-on-hero: var(--on-hero);
+  --color-hero-muted: var(--hero-muted);
+  --color-hero-accent: var(--hero-accent);
+}
+
+@theme {
+  --font-sans: 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+  --spacing: 0.25rem;
+  --spacing-section: 6.25rem;
+  --container-content: 80rem;
+  --radius-control: 0.375rem;
+  --text-title: clamp(4.75rem, 7.25vw, 7rem);
+  --text-title--line-height: 0.98;
+  --text-title--letter-spacing: -0.068em;
+  --text-section: clamp(1.7rem, 2.6vw, 2.15rem);
+  --text-section--line-height: 1.15;
+  --text-section--letter-spacing: -0.045em;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --background: #ffffff;
+    --surface: #f3f6fa;
+    --foreground: #142236;
+    --muted: #5e6a79;
+    --accent: #1f59bc;
+    --border: #dce2e9;
+    --focus: #518bf0;
+    --notice: #edf3fa;
+    --notice-foreground: #576b84;
+    --notice-border: #a6bddf;
+    /* The hero is a deliberately dark surface in either page theme. */
+    --hero: #0c1b2e;
+    --hero-glow: #172c46;
+    --on-hero: #ffffff;
+    --hero-muted: #c3d2e5;
+    --hero-accent: #7ba4e6;
+  }
+
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+    --background: #0c1b2e;
+    --surface: #12243a;
+    --foreground: #e9f0fa;
+    --muted: #afbed1;
+    --accent: #91b9ff;
+    --border: #30435b;
+    --focus: #a9c6fa;
+    --notice: #192e48;
+    --notice-foreground: #c3d2e5;
+    --notice-border: #6386b5;
+  }
+
+  @media (max-width: 760px) {
+    :root { --spacing-section: 3.5rem; }
+  }
+}
