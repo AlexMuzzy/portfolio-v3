@@ -49,9 +49,22 @@ All page content is rendered to HTML at build time. There is no client-side Reac
 
 Pause motion is keyboard accessible. Reduced motion renders a still formation; touch input never captures gestures or blocks page scrolling. The renderer caps pixel density at 1.5 and suspends rendering offscreen or while the tab is hidden. A quiet navy background remains if WebGL is unavailable. The former Blender sculpture source and export are retained as design assets but are not loaded by the homepage.
 
-`SITE_URL` can override the private preview's default canonical origin. Set `SITE_URL=https://www.alexmuzzy.dev` when building a future public deployment. The sitemap and robots file use the same configured origin. No domain settings or portfolio-v2 source are changed by this project.
+The default canonical origin is `https://alexmuzzy.dev`. The sitemap, robots file and social metadata use the same origin. For the private concept preview, build with `SITE_URL=https://alex-musgrove-portfolio-concept.amuzzy.chatgpt.site`.
 
 The `.openai/hosting.json` file holds private preview hosting metadata. `dist/` is portable static output and can also be hosted on GitHub Pages or another static host.
+
+## GitHub Pages
+
+`.github/workflows/pages.yml` installs the Bun version from `package.json`, installs dependencies with the frozen lockfile, runs the checks and builds `dist/`. Every pull request to `main` runs this build and uploads a downloadable `github-pages` artifact. Pushes to `main` additionally deploy the artifact to GitHub Pages; manual runs deploy only when run from `main`. PRs never deploy. Deployment uses GitHub's built-in token with job-scoped permissions, so no additional secrets are needed.
+
+Before the first production deployment:
+
+1. In the repository's **Settings → Pages**, set **Source** to **GitHub Actions**.
+2. When ready to switch sites, set **Custom domain** to `alexmuzzy.dev`. If that domain is attached to another GitHub Pages repository, remove it from the old repository at cutover before adding it here.
+3. Point your existing DNS to GitHub Pages using [GitHub's custom-domain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site). An apex domain uses the documented A/AAAA records or an ALIAS/ANAME supported by your DNS provider. If retaining `www`, its CNAME should point to `alexmuzzy.github.io`.
+4. Enable **Enforce HTTPS** when GitHub has issued the certificate, then merge the workflow PR or run **Build and deploy portfolio** from the Actions tab on `main`.
+
+This build targets the custom-domain root, not the `/portfolio-v3/` project subpath. Configure the custom domain before using the deployed site. With Actions publishing, GitHub's custom-domain setting is authoritative; a repository `CNAME` file is not required. The workflow does not change DNS or move the domain from the old site.
 
 ## Validation
 
