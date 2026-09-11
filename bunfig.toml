@@ -1,0 +1,3 @@
+[run]
+# Run Astro and other Node-shebang tools with Bun too.
+bun = true

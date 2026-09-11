@@ -1,0 +1,102 @@
+---
+import "../styles/global.css";
+import themeScript from "../scripts/theme.js?raw";
+
+interface Props {
+    title?: string;
+    description?: string;
+    home?: boolean;
+}
+const {
+    title = "Alex Musgrove — Senior software engineer",
+    description = "London-based senior software engineer at Intuit QuickBooks, building distributed backend systems. Experience, independent projects and contact details.",
+    home = false,
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const github = "https://github.com/AlexMuzzy";
+const linkedin = "https://www.linkedin.com/in/alex-musgrove-242a0b16a/";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content={description} />
+        {Astro.url.pathname === "/404/" && (
+            <meta name="robots" content="noindex" />
+        )}
+        <meta name="theme-color" content={home ? "#0c1b2e" : "#ffffff"} data-light={home ? "#0c1b2e" : "#ffffff"} data-dark="#0c1b2e" />
+        <script is:inline set:html={themeScript} />
+        <link rel="canonical" href={canonical} />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonical} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <title>{title}</title>
+    </head>
+    <body class:list={["bg-background text-foreground font-sans antialiased", { "home-page": home }]}>
+        <a class="skip-link" href="#main">
+            Skip to content
+        </a>
+        <header class:list={["site-header", { "site-header--dark": home }]}>
+            <div class="shell header-inner">
+                <a class="wordmark" href="/" aria-label="Alex Musgrove, home">
+                    Alex Musgrove
+                    <span class="wordmark-dot" aria-hidden="true">
+                        .
+                    </span>
+                </a>
+                <div class="header-actions flex flex-wrap items-center gap-5">
+                  <nav aria-label="Main navigation">
+                    <a href={home ? "#experience" : "/#experience"}>
+                        Experience
+                    </a>
+                    <a href={home ? "#projects" : "/#projects"}>Projects</a>
+                    <a href="#contact">Contact</a>
+                  </nav>
+                  <label data-theme-control hidden>
+                    <span class="sr-only">Colour theme</span>
+                    <select data-theme-select class="min-h-11 cursor-pointer rounded-control border border-current/30 bg-transparent px-2 py-1 text-sm text-inherit focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus">
+                      <option class="bg-background text-foreground" value="system">System</option>
+                      <option class="bg-background text-foreground" value="light">Light</option>
+                      <option class="bg-background text-foreground" value="dark">Dark</option>
+                    </select>
+                  </label>
+                </div>
+            </div>
+        </header>
+        <main id="main" tabindex="-1">
+            <slot />
+        </main>
+        <footer class="site-footer" id="contact">
+            <div class="shell footer-top">
+                <div>
+                    <h2>Let’s talk.</h2>
+                    <p>
+                        Find me on LinkedIn, or see what I’m working on at
+                        GitHub.
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <a href={linkedin}>
+                        LinkedIn <span aria-hidden="true">↗</span>
+                    </a>
+                    <a href={github}>
+                        GitHub <span aria-hidden="true">↗</span>
+                    </a>
+                </div>
+            </div>
+            <div class="shell footer-bottom">
+                <span>© {new Date().getFullYear()} Alex Musgrove</span>
+                <a href="#top">
+                    Back to top <span aria-hidden="true">↑</span>
+                </a>
+            </div>
+        </footer>
+    </body>
+</html>

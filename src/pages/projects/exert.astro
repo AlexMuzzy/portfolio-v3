@@ -1,0 +1,124 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+import program from "../../assets/exert/02-program.png";
+import workout from "../../assets/exert/03-workout.png";
+import history from "../../assets/exert/04-history.png";
+
+const screens = [
+    {
+        image: program,
+        title: "Plan",
+        caption: "Find a program and see how the training is structured.",
+        alt: "Exert program details with a training schedule, equipment and routines",
+    },
+    {
+        image: workout,
+        title: "Log",
+        caption: "Record sets, reps and weight during a session.",
+        alt: "Exert workout logger with weight and rep fields for each exercise set",
+    },
+    {
+        image: history,
+        title: "Review",
+        caption: "Look back over your training calendar and completed sessions.",
+        alt: "Exert training history with an activity calendar and completed workouts",
+    },
+];
+---
+
+<Layout
+    title="Exert — A side project by Alex Musgrove"
+    description="Exert is Alex Musgrove’s independent training app for planning programs, logging workouts and tracking progress across mobile and web. Currently in private beta."
+>
+    <article class="shell project-detail" id="top">
+        <a class="back-link" href="/#projects">
+            <span aria-hidden="true">←</span> All side projects
+        </a>
+        <header class="project-heading">
+            <p class="project-category">Independent project · Private beta</p>
+            <h1>
+                Exert<span>.</span>
+            </h1>
+            <p class="project-lede">Plan your training. See your progress.</p>
+        </header>
+        <div class="project-summary">
+            <p>
+                I’m building Exert to bring training plans, workout logging and
+                progress into one place. It combines my interest in fitness with
+                the challenge of building a complete product across mobile,
+                web and the backend.
+            </p>
+            <a class="text-link" href="https://www.exert-app.com/">
+                Explore Exert and join the beta <span aria-hidden="true">↗</span>
+            </a>
+        </div>
+        <section class="mb-16" aria-labelledby="exert-screens-title">
+            <h2 id="exert-screens-title" class="mb-8">A session, from start to finish</h2>
+            <div class="grid gap-12 min-[900px]:grid-cols-3 min-[900px]:gap-8">
+                {screens.map((screen) => (
+                    <figure class="mx-auto w-full max-w-[360px]">
+                        <Image
+                            src={screen.image}
+                            alt={screen.alt}
+                            width={440}
+                            height={956}
+                            widths={[360, 720, 1080]}
+                            sizes="(min-width: 1100px) 308px, (min-width: 900px) calc((100vw - 144px) / 3), (min-width: 400px) 360px, calc(100vw - 40px)"
+                            format="webp"
+                            loading="lazy"
+                            class="h-auto w-full rounded-3xl border border-border"
+                        />
+                        <figcaption class="mt-5">
+                            <h3>{screen.title}</h3>
+                            <p class="mt-2 text-muted">{screen.caption}</p>
+                        </figcaption>
+                    </figure>
+                ))}
+            </div>
+            <p class="mt-6 text-sm text-muted">
+                Screens from the development build, with illustrative training data.
+            </p>
+        </section>
+        <div class="project-story">
+            <section aria-labelledby="exert-training">
+                <h2 id="exert-training">From plan to progress</h2>
+                <div class="space-y-4 text-muted">
+                    <p>
+                        Discover a community program or build your own, then
+                        customise exercises, sets and reps. The mobile app puts
+                        your next session and workout log close at hand; the web
+                        app provides space to browse and plan.
+                    </p>
+                    <p>
+                        Training history, muscle coverage and strength trends
+                        help make sense of the work over time. Programs can also
+                        be shared through a public profile.
+                    </p>
+                </div>
+            </section>
+            <section aria-labelledby="exert-reliability">
+                <h2 id="exert-reliability">Keeping the workout safe</h2>
+                <p class="text-muted">
+                    A dropped connection shouldn’t mean losing a session.
+                    Workout drafts persist on the device, while completed
+                    sessions are stored locally in SQLite and queued for sync.
+                    Recovery and retry handling are a core part of the mobile
+                    implementation.
+                </p>
+            </section>
+            <section aria-labelledby="exert-stack">
+                <h2 id="exert-stack">Built across the stack</h2>
+                <p class="text-muted">
+                    A TypeScript monorepo connects React Native and Expo on
+                    mobile, Next.js on the web, and a Fastify API backed by
+                    PostgreSQL. Shared types, validation and tRPC keep the
+                    clients and server aligned as the product evolves.
+                </p>
+            </section>
+        </div>
+        <a class="text-link" href="/#projects">
+            Back to the portfolio <span aria-hidden="true">↗</span>
+        </a>
+    </article>
+</Layout>
